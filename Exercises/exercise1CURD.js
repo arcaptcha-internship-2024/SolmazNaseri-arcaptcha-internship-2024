@@ -1,5 +1,4 @@
-
-//  CRUD (Create, Read, Update, Delete)  in array 
+//  CRUD (Create, Read, Update, Delete)  array as database 
 
 let database = [];
 
@@ -13,7 +12,7 @@ function createRecord(record) {
 function readRecord(index = null) {
     if (index === null) {
         return database;
-    } else if (index >= 0) {
+    } else if (index >= 0 && index < database.length) {
         return database[index];
     } else {
         return "Record not found.";
@@ -22,7 +21,7 @@ function readRecord(index = null) {
 
 //Update
 function updateRecord(index, updatedRecord) {
-    if (index >= 0 ) {
+    if (index >= 0) {
         database[index] = updatedRecord;
         console.log(updatedRecord);
     } else {
@@ -32,12 +31,10 @@ function updateRecord(index, updatedRecord) {
 
 // Delete
 function deleteRecord(index) {
-    if (index >= 0) {
+    if (index >= 0 && index < database.length) {
         let removedRecord = database.splice(index, 1);
         console.log(removedRecord[0]);
     } else {
         console.log("Record not found.");
     }
 }
-
-
