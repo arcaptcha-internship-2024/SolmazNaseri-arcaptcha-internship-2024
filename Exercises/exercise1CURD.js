@@ -2,13 +2,11 @@
 
     let database = [];
 
-    //Create
     function createRecord(record) {
         database.push(record);
         console.log(`Record added:`, record);
     }
 
-    //Read
     function readRecord(index = null) {
         if (index === null) {
             return database;
@@ -19,7 +17,7 @@
         }
     }
 
-    //Update
+
     function updateRecord(index, updatedRecord) {
         if (index >= 0) {
             database[index] = updatedRecord;
@@ -29,7 +27,7 @@
         }
     }
 
-    // Delete
+
     function deleteRecord(index) {
         if (index >= 0 && index < database.length) {
             let removedRecord = database.splice(index, 1);
@@ -40,9 +38,24 @@
     }
 
     //Test in example
-    createRecord([id = 1, Name = 'ali', age = '15', job = 'student'])
-    createRecord([id = 2, Name = 'reza', age = '20', job = 'programmer'])
-    createRecord([id = 3, Name = 'sara', age = '35', job = 'writer'])
+    createRecord({
+        id: 1,
+        Name: 'ali',
+        age: '15',
+        job: 'student'
+    })
+    createRecord({
+        id: 2,
+        Name: 'reza',
+        age: '20',
+        job: 'programmer'
+    })
+    createRecord({
+        id: 3,
+        Name: 'sara',
+        age: '35',
+        job: 'writer'
+    })
     console.log("Record is:", readRecord(0))
         //update age for Record 1
     updateRecord(1, [id = 2, Name = 'reza', age = '21', job = 'programmer'])
