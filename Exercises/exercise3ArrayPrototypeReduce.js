@@ -33,3 +33,17 @@ console.log(firstThree);
 const numbers = [1, 2, 3, 4, 5];
 numbers.splice(1, 2);
 console.log(numbers);
+
+
+const data = [
+    { name: 'ali', age: 23 },
+    { name: 'goli', age: 44 }
+];
+const totalAge = data.reduce((acc, person) => acc + person.age, 0);
+const averageAge = totalAge / data.length;
+const result = data.filter(person => person.age > averageAge);
+result.forEach(person => {
+    person.nameLength = person.name.length;
+});
+
+console.log(result);
