@@ -1,20 +1,23 @@
 <template>
-    <div class="user-form">
+    <div class="user-form fd-flex">
       <h1>فرم اطلاعات کاربر</h1>
-      <form @submit.prevent="submitForm">
-        <label for="fullName">نام و نام خانوادگی:</label>
-        <input v-model="formData.fullName" type="text" id="fullName" required />
+      <form  @submit.prevent="submitForm">
+        <div class="formBox">
+          <label  for="fullName">نام و نام خانوادگی</label>
+          <input v-model="formData.fullName" type="text" id="fullName" required />
+        </div>
+        
   
-        <label for="organization">نام سازمان:</label>
+        <label for="organization">نام سازمان</label>
         <input v-model="formData.organization" type="text" id="organization" required />
   
-        <label for="jobTitle">موقعیت شغلی:</label>
+        <label for="jobTitle">موقعیت شغلی</label>
         <input v-model="formData.jobTitle" type="text" id="jobTitle" required />
   
-        <label for="phoneNumber">شماره تلفن:</label>
+        <label  for="phoneNumber">شماره تلفن</label>
         <input v-model="formData.phoneNumber" type="tel" id="phoneNumber" required />
   
-        <label for="description">توضیحات:</label>
+        <label  for="description">توضیحات</label>
         <textarea v-model="formData.description" id="description" rows="4"></textarea>
   
         <button type="submit">ارسال</button>
@@ -89,31 +92,38 @@
     margin: 0 auto;
     padding: 20px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 10px;
+    background-color: lightgrey;
+
   }
   
   label {
     display: block;
     margin-bottom: 8px;
     font-weight: bold;
+    font-size: 20px;
   }
   
   input,
   textarea {
-    width: 100%;
     padding: 8px;
     margin-bottom: 20px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 10px;
+    width: 88%;
+    height: 40px;
   }
   
   button {
-    background-color: #4caf50;
+    background-color: #689ec9;
     color: white;
     padding: 10px 20px;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
+    margin: 5%;
+    width: 20%;
+    height: 50px;
   }
   
   button:hover {
@@ -124,5 +134,7 @@
     margin-top: 20px;
     color: green;
   }
+  
+
   </style>
   
