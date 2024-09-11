@@ -1,15 +1,128 @@
 <template>
-
-      <h1>فرم ورود اطلاعات</h1>
-      
+    <div class="user-form">
+      <h1>فرم اطلاعات کاربر</h1>
+      <form @submit.prevent="submitForm">
+        <label for="fullName">نام و نام خانوادگی:</label>
+        <input v-model="formData.fullName" type="text" id="fullName" required />
+  
+        <label for="organization">نام سازمان:</label>
+        <input v-model="formData.organization" type="text" id="organization" required />
+  
+        <label for="jobTitle">موقعیت شغلی:</label>
+        <input v-model="formData.jobTitle" type="text" id="jobTitle" required />
+  
+        <label for="phoneNumber">شماره تلفن:</label>
+        <input v-model="formData.phoneNumber" type="tel" id="phoneNumber" required />
+  
+        <label for="description">توضیحات:</label>
+        <textarea v-model="formData.description" id="description" rows="4"></textarea>
+  
+        <button type="submit">ارسال</button>
+      </form>
+  
+      <div v-if="message" class="message">
+        {{ message }}
+      </div>
+    </div>
   </template>
   
   <script>
- 
+  export default {
+    data() {
+      return {
+        formData: {
+          fullName: "",
+          organization: "",
+          jobTitle: "",
+          phoneNumber: "",
+          description: "",
+        },
+        message: "",
+      };
+    },
+    methods: {
+      async submitForm() {
+        try {
+    console.log("Sending form data:", this.formData); 
+
+    const response = await fetch("/api/submit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(this.formData),
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const contentType = response.headers.get("Content-Type");
+    if (contentType && contentType.includes("application/json")) {
+      const result = await response.json();
+      this.message = "اطلاعات با موفقیت ارسال شد";
+    } else {
+      this.message = "پاسخ دریافتی از سرور به درستی قالب‌بندی نشده است";
+    }
+    this.resetForm();
+  } catch (error) {
+    console.error("Error:", error);
+    this.message = "خطا در ارسال اطلاعات";
+  }
+      },
+      resetForm() {
+        this.formData = {
+          fullName: "",
+          organization: "",
+          jobTitle: "",
+          phoneNumber: "",
+          description: "",
+        };
+      },
+    },
+  };
   </script>
   
-  <style >
- 
+  <style scoped>
+  .user-form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
   
+  label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  
+  input,
+  textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  
+  .message {
+    margin-top: 20px;
+    color: green;
+  }
   </style>
   
