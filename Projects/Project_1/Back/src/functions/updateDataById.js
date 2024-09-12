@@ -3,7 +3,8 @@ import { readData, createRecord } from '../utils/files.js';
 export async function updateDataById(request, reply) {
     try {
         const id = Number(request.params.id);
-        const updatedData = request.body;
+
+        const { updatedData = {}, sourceType = 'json' } = request.body || {};
         let jsonData = readData();
 
         if (id >= jsonData.length) {
