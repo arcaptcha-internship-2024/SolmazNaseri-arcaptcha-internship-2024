@@ -1,7 +1,7 @@
-import { submitData } from './submitData.js';
-import { getDataById } from './getDataById.js';
-import { updateDataById } from './updateDataById.js';
-import { deleteDataById } from './deleteDataById.js';
+import { submitData } from '../functions/submitData.js';
+import { getDataById } from '../functions/getDataById.js';
+import { updateDataById } from '../functions/updateDataById.js';
+import { deleteDataById } from '../functions/deleteDataById.js';
 
 export default async function routes(fastify) {
     fastify.post('/api/submit', submitData);
