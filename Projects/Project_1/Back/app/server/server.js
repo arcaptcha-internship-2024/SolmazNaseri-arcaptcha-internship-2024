@@ -20,7 +20,7 @@ fastify.register(fastifyCors, {
 });
 fastify.register(routes);
 
-fastify.listen({ port: 4000, host: '127.0.0.1' }, (err, address) => {
+fastify.listen({ port: 4000, host: '0.0.0.0' }, (err, address) => {
     if (err) {
         console.error('Error starting server:', err);
         process.exit(1);
