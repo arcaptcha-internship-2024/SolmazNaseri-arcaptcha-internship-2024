@@ -1,0 +1,26 @@
+version: '3'
+services:
+  database_postgres:
+    image: postgres:16-alpine   
+    environment:
+      POSTGRES_USER: user  
+      POSTGRES_PASSWORD: password  
+      POSTGRES_DB: mydatabase  
+    ports:
+      - "5432:5432" 
+  
+  frontendApp:
+    build:
+      context: /client/dockerfile 
+      dockerfile: Dockerfile  
+    ports:
+      - "5173:5173"  
+ 
+    backendApp:
+     build:
+      context: /Back/dockerfile
+     ports:
+      - "4000:4000" 
+     environment:
+       SERVER_HOST = 0.0.0.0
+       SERVER_PORT = 4000
