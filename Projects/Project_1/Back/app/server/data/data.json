@@ -5,5 +5,11 @@
     "jobTitle": "job",
     "phoneNumber": "99999",
     "description": "allright"
+  },
+  {
+    "name": "Example",
+    "age": 25,
+    "job": "wtf",
+    "example": 123
   }
 ]

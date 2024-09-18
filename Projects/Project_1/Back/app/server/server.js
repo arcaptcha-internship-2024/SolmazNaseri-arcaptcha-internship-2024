@@ -6,7 +6,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import routes from '../routes/routes.js';
 dotenv.config();
-const fastify = Fastify();
+const fastify = Fastify({ logger: true });
 const __filename = fileURLToPath(
     import.meta.url);
 const __dirname = path.dirname(__filename);
