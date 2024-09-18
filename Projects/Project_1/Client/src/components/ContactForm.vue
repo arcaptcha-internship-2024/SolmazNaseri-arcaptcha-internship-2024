@@ -4,20 +4,20 @@
     <form @submit.prevent="submitForm">
       <div class="formBox">
         <label for="fullName">نام و نام خانوادگی</label>
-        <input v-model="formData.fullName" type="text" id="fullName" required />
+        <input v-model="formData.data.fullName" type="text" id="fullName" required />
       </div>
       
       <label for="organization">نام سازمان</label>
-      <input v-model="formData.organization" type="text" id="organization" required />
+      <input v-model="formData.data.organization" type="text" id="organization" required />
 
       <label for="jobTitle">موقعیت شغلی</label>
-      <input v-model="formData.jobTitle" type="text" id="jobTitle" required />
+      <input v-model="formData.data.jobTitle" type="text" id="jobTitle" required />
 
       <label for="phoneNumber">شماره تلفن</label>
-      <input v-model="formData.phoneNumber" type="tel" id="phoneNumber" required />
+      <input v-model="formData.data.phoneNumber" type="tel" id="phoneNumber" required />
 
       <label for="description">توضیحات</label>
-      <textarea v-model="formData.description" id="description" rows="4"></textarea>
+      <textarea v-model="formData.data.description" id="description" rows="4"></textarea>
 
       <button type="submit">ارسال</button>
     </form>
@@ -34,12 +34,15 @@ import api from '../axios.js';
 export default {
   data() {
     return {
-      formData: {
-        fullName: "",
-        organization: "",
-        jobTitle: "",
-        phoneNumber: "",
-        description: "",
+      formData: { 
+        data: {  
+          fullName: "",
+          organization: "",
+          jobTitle: "",
+          phoneNumber: "",
+          description: "",
+        },
+        sourceType: 'json'  
       },
       message: "",
     };
@@ -63,16 +66,20 @@ export default {
       }
     },
     resetForm() {
-      this.formData = {
-        fullName: "",
-        organization: "",
-        jobTitle: "",
-        phoneNumber: "",
-        description: "",
+      this.formData = { 
+        data: {
+          fullName: "",
+          organization: "",
+          jobTitle: "",
+          phoneNumber: "",
+          description: "",
+        },
+        sourceType: 'json' 
       };
     },
   },
 };
+
 </script>
 
 <style scoped>

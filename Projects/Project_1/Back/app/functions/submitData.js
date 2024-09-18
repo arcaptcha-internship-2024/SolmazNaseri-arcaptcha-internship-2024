@@ -3,6 +3,7 @@ import { readData, createRecord } from '../utils/files.js';
 async function saveToJson(data) {
     let jsonData = readData();
     jsonData.push(data);
+
     createRecord(jsonData);
     return { message: 'Data saved successfully' };
 }
@@ -17,7 +18,7 @@ export async function submitData(request, reply) {
         if (!storage[sourceType]) {
             return reply.code(400).send({ message: `Storage source ${sourceType} not supported` });
         }
-
+        console.log(data);
         const result = await storage[sourceType](data);
 
         reply.code(200).send(result);
