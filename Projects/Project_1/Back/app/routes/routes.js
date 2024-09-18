@@ -8,7 +8,4 @@ export default async function routes(fastify) {
     fastify.get('/api/data/:id', getDataById);
     fastify.put('/api/data/:id', updateDataById);
     fastify.delete('/api/data/:id', deleteDataById);
-
-
-
 }

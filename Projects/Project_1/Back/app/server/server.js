@@ -1,10 +1,11 @@
 import Fastify from 'fastify';
+import dotenv from 'dotenv';
 import fastifyStatic from '@fastify/static';
 import fastifyCors from '@fastify/cors';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import routes from '../routes/routes.js';
-
+dotenv.config();
 const fastify = Fastify();
 const __filename = fileURLToPath(
     import.meta.url);
@@ -20,7 +21,10 @@ fastify.register(fastifyCors, {
 });
 fastify.register(routes);
 
-fastify.listen({ port: 4000, host: '0.0.0.0' }, (err, address) => {
+fastify.listen({
+    port: process.env.SERVER_PORT || 4000,
+    host: process.env.SERVER_HOST || '0.0.0.0'
+}, (err, address) => {
     if (err) {
         console.error('Error starting server:', err);
         process.exit(1);
