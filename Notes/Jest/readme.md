@@ -51,7 +51,11 @@ yarn test
 ## 5. Testing Different Features
 
 **toBe**: Checks that a value is exactly equal.
+
 **toEqual**: Used to compare objects and arrays.
+
 **toBeNull**: Checks that a value is null.
+
 **toBeDefined**: Checks that a value is defined.
+
 **toContain**: Checks that an array contains a specific item.
