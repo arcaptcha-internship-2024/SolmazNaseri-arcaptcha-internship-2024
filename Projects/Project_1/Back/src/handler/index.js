@@ -1,8 +1,14 @@
+// handler/index.js
+import { createData } from './createData.js';
+import { getDataById } from './getDataById.js';
+import { updateDataById } from './updateDataById.js';
+import { deleteDataById } from './deleteDataById.js';
+
 const handlers = {
-    createData: require('./createData.js').createData,
-    getDataById: require('./getDataById.js').getDataById,
-    updateDataById: require('./updateDataById.js').updateDataById,
-    deleteDataById: require('./deleteDataById.js').deleteDataById,
+    createData,
+    getDataById,
+    updateDataById,
+    deleteDataById,
 };
 
 export default handlers;
