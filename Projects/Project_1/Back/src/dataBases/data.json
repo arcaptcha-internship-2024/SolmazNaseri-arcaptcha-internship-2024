@@ -23,5 +23,12 @@
     "age": 25,
     "job": "wtf",
     "example": 123
+  },
+  {
+    "fullName": "test",
+    "organization": "a",
+    "jobTitle": "a",
+    "phoneNumber": "a",
+    "description": "a"
   }
 ]

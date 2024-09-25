@@ -52,7 +52,7 @@ export default {
       try {
         console.log("Sending form data:", this.formData); 
 
-        const response = await api.post("/submit", this.formData);
+        const response = await api.post("/data", this.formData);
 
         if (response.status === 200) {
           this.message = "اطلاعات با موفقیت ارسال شد";
