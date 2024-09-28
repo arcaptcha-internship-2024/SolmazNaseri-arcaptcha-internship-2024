@@ -22,7 +22,7 @@
       <arcaptchaVue3
         :callback="callbackDef"
         :expired_callback="expired_callbackDef"
-        site_key="387jhaypn1"
+        :site_key = siteKey
       ></arcaptchaVue3>
 
       <button type="submit" :disabled="!captchaSolved">ارسال</button>
@@ -56,6 +56,7 @@ export default {
       },
       message: "",
       captchaSolved: false, 
+      siteKey: import.meta.env.VITE_SITE_KEY,
     };
   },
   methods: {
