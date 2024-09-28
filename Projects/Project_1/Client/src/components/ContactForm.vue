@@ -25,7 +25,7 @@
         site_key="387jhaypn1"
       ></arcaptchaVue3>
 
-      <button type="submit">ارسال</button>
+      <button type="submit" :disabled="!captchaSolved">ارسال</button>
     </form>
 
     <div v-if="message" class="message">
@@ -55,17 +55,28 @@ export default {
         sourceType: 'json'  
       },
       message: "",
+      captchaSolved: false, 
     };
   },
   methods: {
     callbackDef() {
-      this.submitForm();
+      console.log("Captcha solved successfully!");
+      this.captchaSolved = true; 
     },
+
     expired_callbackDef() {
-      this.message = " لطفاً دوباره تلاش کنید.";
+      console.log("Captcha has expired.");
+      this.captchaSolved = false; 
+      this.message = "کپچا منقضی شده است، لطفاً دوباره تلاش کنید.";
     },
 
     async submitForm() {
+ 
+      if (!this.captchaSolved) {
+        this.message = "لطفاً کپچا را حل کنید.";
+        return; 
+      }
+
       try {
         console.log("Sending form data:", this.formData); 
 
@@ -74,6 +85,7 @@ export default {
         if (response.status === 200) {
           this.message = "اطلاعات با موفقیت ارسال شد";
           this.resetForm();
+          this.captchaSolved = false; 
         } else {
           this.message = "پاسخ دریافتی از سرور درست نیست";
         }
@@ -138,12 +150,17 @@ button {
   height: 50px;
 }
 
-button:hover {
-  background-color: #45a049;
+button:disabled {
+  background-color: grey; 
+  cursor: not-allowed; 
+}
+
+button:hover:not(:disabled) {
+  background-color: #45a049; 
 }
 
 .message {
   margin-top: 20px;
-  color: rgb(115, 171, 115);
+  color: green;
 }
 </style>
