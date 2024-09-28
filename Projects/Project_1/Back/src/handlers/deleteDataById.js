@@ -1,18 +1,15 @@
-import { readData, createRecord } from '../orm/files.js';
+import { deleteJsonDataById } from '../services/storage.js';
 
 export async function deleteDataById(request, reply) {
     try {
         const id = Number(request.params.id);
-        let jsonData = readData();
+        const result = await deleteJsonDataById(id);
 
-        if (id >= jsonData.length) {
+        if (!result) {
             return reply.code(404).send({ message: 'Record not found' });
         }
 
-        jsonData.splice(id, 1);
-        createRecord(jsonData);
-
-        reply.code(200).send({ message: 'Record deleted successfully' });
+        reply.code(200).send(result);
     } catch (error) {
         console.error('Error deleting record:', error);
         reply.code(500).send({ message: 'Error deleting record' });

@@ -1,9 +1,4 @@
-import { readData } from '../orm/files.js';
-
-async function getJsonDataById(id) {
-    const jsonData = readData();
-    return jsonData.find((entry, index) => index === id);
-}
+import { getJsonDataById } from '../services/storage.js';
 
 const storage = {
     json: getJsonDataById,
