@@ -19,6 +19,12 @@
       <label for="description">توضیحات</label>
       <textarea v-model="formData.data.description" id="description" rows="4"></textarea>
 
+      <arcaptchaVue3
+        :callback="callbackDef"
+        :expired_callback="expired_callbackDef"
+        site_key="387jhaypn1"
+      ></arcaptchaVue3>
+
       <button type="submit">ارسال</button>
     </form>
 
@@ -30,8 +36,12 @@
 
 <script>
 import api from '../axios.js'; 
+import arcaptchaVue3 from "arcaptcha-vue3"; 
 
 export default {
+  components: {
+    arcaptchaVue3, 
+  },
   data() {
     return {
       formData: { 
@@ -48,6 +58,13 @@ export default {
     };
   },
   methods: {
+    callbackDef() {
+      this.submitForm();
+    },
+    expired_callbackDef() {
+      this.message = " لطفاً دوباره تلاش کنید.";
+    },
+
     async submitForm() {
       try {
         console.log("Sending form data:", this.formData); 
@@ -65,6 +82,7 @@ export default {
         this.message = "خطا در ارسال اطلاعات";
       }
     },
+
     resetForm() {
       this.formData = { 
         data: {
@@ -79,7 +97,6 @@ export default {
     },
   },
 };
-
 </script>
 
 <style scoped>
@@ -127,6 +144,6 @@ button:hover {
 
 .message {
   margin-top: 20px;
-  color: green;
+  color: rgb(115, 171, 115);
 }
 </style>
