@@ -1,8 +1,8 @@
-import handlers from '../handler/index.js';
+import controler from '../controler/index.js';
 
 export default async function routes(fastify) {
-    fastify.post('/api/data', handlers.createData);
-    fastify.get('/api/data/:id', handlers.getDataById);
-    fastify.put('/api/data/:id', handlers.updateDataById);
-    fastify.delete('/api/data/:id', handlers.deleteDataById);
+    fastify.post('/api/data', controler.createData);
+    fastify.get('/api/data/:id', controler.getDataById);
+    fastify.put('/api/data/:id', controler.updateDataById);
+    fastify.delete('/api/data/:id', controler.deleteDataById);
 }
