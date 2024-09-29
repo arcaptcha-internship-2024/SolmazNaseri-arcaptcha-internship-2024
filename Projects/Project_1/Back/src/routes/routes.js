@@ -1,4 +1,4 @@
-import controler from '../controler/index.js';
+import controler from '../handlers/index.js';
 
 export default async function routes(fastify) {
     fastify.register(async function(instance) {
