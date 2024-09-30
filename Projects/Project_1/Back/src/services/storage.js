@@ -1,4 +1,4 @@
-import { readData, createRecord } from '../orm/files.js';
+import { readData, createRecord } from '../ORM/files.js';
 
 export async function saveToJson(data) {
     let jsonData = readData();
