@@ -52,7 +52,8 @@ export default {
           phoneNumber: "",
           description: "",
         },
-        sourceType: 'json'  
+        sourceType: 'json',
+        captchaToken: ""  
       },
       message: "",
       captchaSolved: false, 
@@ -60,9 +61,10 @@ export default {
     };
   },
   methods: {
-    callbackDef() {
-      console.log("Captcha solved successfully!");
+    callbackDef(token) {
+      console.log("Captcha solved successfully!", token);
       this.captchaSolved = true; 
+      this.formData.captchaToken = token; 
     },
 
     expired_callbackDef() {
@@ -105,7 +107,8 @@ export default {
           phoneNumber: "",
           description: "",
         },
-        sourceType: 'json' 
+        sourceType: 'json' ,
+        captchaToken: "" 
       };
     },
   },
