@@ -1,3 +1,4 @@
+<!-- src/components/UserForm.vue -->
 <template>
   <div class="user-form fd-flex">
     <h1>فرم اطلاعات کاربر</h1>
@@ -6,7 +7,7 @@
         <label for="fullName">نام و نام خانوادگی</label>
         <input v-model="formData.data.fullName" type="text" id="fullName" required />
       </div>
-      
+
       <label for="organization">نام سازمان</label>
       <input v-model="formData.data.organization" type="text" id="organization" required />
 
@@ -22,7 +23,7 @@
       <arcaptchaVue3
         :callback="callbackDef"
         :expired_callback="expired_callbackDef"
-        :site_key = siteKey
+        :site_key="siteKey"
       ></arcaptchaVue3>
 
       <button type="submit" :disabled="!captchaSolved">ارسال</button>
@@ -30,6 +31,14 @@
 
     <div v-if="message" class="message">
       {{ message }}
+    </div>
+
+    <!-- لینک ورود مدیر -->
+    <div class="admin-login">
+      
+      <router-link 
+      to="/admin-login">ورود مدیر
+    </router-link>
     </div>
   </div>
 </template>
@@ -62,29 +71,23 @@ export default {
   },
   methods: {
     callbackDef(token) {
-      console.log("Captcha solved successfully!", token);
       this.captchaSolved = true; 
       this.formData.captchaToken = token; 
     },
 
     expired_callbackDef() {
-      console.log("Captcha has expired.");
       this.captchaSolved = false; 
       this.message = "کپچا منقضی شده است، لطفاً دوباره تلاش کنید.";
     },
 
     async submitForm() {
- 
       if (!this.captchaSolved) {
         this.message = "لطفاً کپچا را حل کنید.";
         return; 
       }
 
       try {
-        console.log("Sending form data:", this.formData); 
-
         const response = await api.post("/data", this.formData);
-
         if (response.status === 200) {
           this.message = "اطلاعات با موفقیت ارسال شد";
           this.resetForm();
@@ -93,7 +96,6 @@ export default {
           this.message = "پاسخ دریافتی از سرور درست نیست";
         }
       } catch (error) {
-        console.error("Error:", error);
         this.message = "خطا در ارسال اطلاعات";
       }
     },
@@ -166,5 +168,19 @@ button:hover:not(:disabled) {
 .message {
   margin-top: 20px;
   color: green;
+}
+
+.admin-login {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.admin-login a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.admin-login a:hover {
+  text-decoration: underline;
 }
 </style>

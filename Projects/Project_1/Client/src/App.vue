@@ -1,16 +1,18 @@
 <template>
   <div id="app">
-    <ContactForm />
+    <UserForm />
   </div>
 </template>
 
 <script>
-import ContactForm from './components/ContactForm.vue';
+import UserForm from './components/UserForm.vue';
+import AdminLogin from './components/AdminLogin.vue';
 
 export default {
   name: 'App',
   components: {
-    ContactForm
+    UserForm,
+    AdminLogin
   }
 };
 </script>
